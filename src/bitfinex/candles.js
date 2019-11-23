@@ -2,7 +2,6 @@
 
 const fetch = require('node-fetch')
 const url = 'https://api-pub.bitfinex.com/v2/'
-
 const pathParams = 'candles/trade:1m:tBTCUSD/hist' // Change these based on relevant path params. /last for last candle
 const queryParams = '' // Change these based on relevant query params
 
@@ -38,5 +37,4 @@ async function getCandles() {
     }
 }
 
-getCandles()
 module.exports = getCandles 
