@@ -1,0 +1,8 @@
+{
+  "name": "trading.bot",
+  "version": "1.0.0",
+  "description": "a bitfinex automated trading bot",
+  "main": "index.js",
+  "author": "Albert Abril",
+  "license": "MIT"
+}
