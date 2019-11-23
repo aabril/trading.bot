@@ -18,6 +18,7 @@ class Main extends Poller {
 
     main() {
         console.log(new Date())
+        // TODO: Here the calls to ./src/bitfinex/* and the algorithm to place orders (print and sell)
         main.poll()
     }
 }
