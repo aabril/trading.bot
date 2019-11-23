@@ -12,7 +12,8 @@ function parseTradingPairs(values) {
 
 async function apiGetTicker() {
     try {
-        const req = await fetch(`${url}/${pathParams}?${queryParams}`)
+        const requestUrl = `${url}/${pathParams}?${queryParams}`
+        const req = await fetch(requestUrl)
         return await req.json()
     } catch (err) {
         console.log(err)

@@ -6,6 +6,12 @@
   "author": "Albert Abril",
   "license": "MIT",
   "dependencies": {
+    "global": "^4.4.0",
     "node-fetch": "^2.6.0"
-  }
+  },
+  "scripts": {
+    "start": "node src/start",
+    "dev": "nodemon --watch src src/start"
+  },
+  "devDependencies": {}
 }
