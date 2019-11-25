@@ -28,3 +28,9 @@ List of possible perfomances that could improve the code:
 
 • By default I usually don't use ES6 classes, but sometimes could be benefitials when handling data
 • Since the EventEmitter inheritance (Poller) and request data handling I thought could be convenient
+
+# Notes for reviewers
+
+• Once I would get familiarised with the coding structure, Bitfinext API and trading conepts:
+I would rewrite this (quicker) using TDD methodology.
+
