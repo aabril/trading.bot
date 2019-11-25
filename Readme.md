@@ -25,3 +25,6 @@ List of possible perfomances that could improve the code:
 • With more time and familiarised with the API, better using it without the formatting
 • Proper tests could avoid errors and therefore avoid possible perf issues
 • The Use of typescript could be considered too.
+
+• By default I usually don't use ES6 classes, but sometimes could be benefitials when handling data
+• Since the EventEmitter inheritance (Poller) and request data handling I thought could be convenient
