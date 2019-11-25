@@ -1,4 +1,5 @@
 const Poller = require('./Poller')
+const orders = require('./Orders')
 
 class Main extends Poller {
     constructor(interval=1000, pnl=50000){
@@ -8,6 +9,7 @@ class Main extends Poller {
         this.printWelcomeMessage()
         this.onPoll(this.main)
     }
+
     printWelcomeMessage() {
         console.log('')
         console.log('Welcome to the Bitfinex Trader Bot')
@@ -16,9 +18,18 @@ class Main extends Poller {
         console.log('')
     }
 
+    printMsg(msg) {
+        const msgString = String(msg)
+        console.log(msgString) //console.logs should be replaced by a logger
+    }
+
     main() {
+        // const orders = getOrders(pnl)
+        const ordersMsgs = ['Buy 1.324 BTC at price of 7000 USD. Total amount: 11111 USDs']
         console.log(new Date())
-        // TODO: Here the calls to ./src/bitfinex/* and the algorithm to place orders (print and sell)
+        ordersMsgs.forEach(order => {
+            this.printMsg("Order: " + order)
+        });
         this.poll()
     }
 }
