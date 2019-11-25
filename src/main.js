@@ -1,5 +1,6 @@
 const Poller = require('./Poller')
-const orders = require('./Orders')
+const Orders = require('./Orders')
+const orders = new Orders()
 
 class Main extends Poller {
     constructor(interval=1000, pnl=50000){
@@ -7,6 +8,7 @@ class Main extends Poller {
         this.interval = interval
         this.pnl = pnl
         this.printWelcomeMessage()
+        this.printPnLPeriodically()
         this.onPoll(this.main)
     }
 
@@ -18,16 +20,21 @@ class Main extends Poller {
         console.log('')
     }
 
+    printPnLPeriodically(timeMs=4000){
+        setInterval(() => this.printPnl(true), timeMs)
+    }
+
     printMsg(msg) {
         const msgString = String(msg)
+        console.log(new Date())
         console.log(msgString) //console.logs should be replaced by a logger
     }
 
     main() {
-        // const orders = getOrders(pnl)
-        const ordersMsgs = ['Buy 1.324 BTC at price of 7000 USD. Total amount: 11111 USDs']
         console.log(new Date())
+        const ordersMsgs = orders.getOrdersMsgs()
         ordersMsgs.forEach(order => {
+            console.log(order)
             this.printMsg("Order: " + order)
         });
         this.poll()

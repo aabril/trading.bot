@@ -8,8 +8,10 @@ class Poller extends EventEmitter {
         this.keyListener()
     }
 
-    printPnl(){
-        const msg = '>> PNL : ' + this.pnl
+    printPnl(prefix=false){
+        let msg = ''
+        msg += (prefix) ? '>> Current PNL : ' : '>> PNL : '
+        msg += this.pnl
         console.log(msg)
     }
 
