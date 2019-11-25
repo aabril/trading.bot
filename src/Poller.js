@@ -8,6 +8,11 @@ class Poller extends EventEmitter {
         this.keyListener()
     }
 
+    printPnl(){
+        const msg = '>> PNL : ' + this.pnl
+        console.log(msg)
+    }
+
     keyListener() {
         readline.emitKeypressEvents(process.stdin);
         process.stdin.setRawMode(true);
@@ -16,7 +21,7 @@ class Poller extends EventEmitter {
                 process.exit();
             } else {
                 if(key.sequence === 'p') {
-                    console.log(this.pnl)
+                    this.printPnl()
                 }
             }
         })
