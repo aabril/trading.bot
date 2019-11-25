@@ -19,15 +19,8 @@ class Main extends Poller {
     main() {
         console.log(new Date())
         // TODO: Here the calls to ./src/bitfinex/* and the algorithm to place orders (print and sell)
-        main.poll()
+        this.poll()
     }
 }
-
-
-const msInterval = 2000
-const pnlInit= 40000
-
-let main = new Main(msInterval, pnlInit)
-main.main()
 
 module.exports = Main
