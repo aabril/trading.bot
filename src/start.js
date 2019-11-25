@@ -1,7 +1,8 @@
 const Main = require('./Main')
 
-const MSINTERVAL = 2000
-const PNLINIT= 40000
+const MSINTERVAL = process.env.MSINTERVAL || 2000
+const PNLINIT= process.env.PNLINIT || 40000
+const MSINTERVALCURRENT = process.env.PNLINIT || 6000
 
-let main = new Main(MSINTERVAL, PNLINIT)
+let main = new Main(MSINTERVAL, PNLINIT, MSINTERVALCURRENT)
 main.main()

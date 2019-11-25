@@ -3,9 +3,10 @@ const Orders = require('./Orders')
 const orders = new Orders()
 
 class Main extends Poller {
-    constructor(interval=1000, pnl=50000){
+    constructor(interval=1000, pnl=50000, intervalCurrent=5000){
         super()
         this.interval = interval
+        this.intervalCurrent = intervalCurrent
         this.pnl = pnl
         this.printWelcomeMessage()
         this.printPnLPeriodically()
@@ -20,23 +21,31 @@ class Main extends Poller {
         console.log('')
     }
 
-    printPnLPeriodically(timeMs=4000){
+    printPnLPeriodically(){
+        const timeMs = this.intevalCurrent
         setInterval(() => this.printPnl(true), timeMs)
     }
 
     printMsg(msg) {
         const msgString = String(msg)
-        console.log(new Date())
         console.log(msgString) //console.logs should be replaced by a logger
     }
 
-    main() {
-        console.log(new Date())
+    printOrders() {
         const ordersMsgs = orders.getOrdersMsgs()
-        ordersMsgs.forEach(order => {
-            console.log(order)
-            this.printMsg("Order: " + order)
-        });
+        if(ordersMsgs.length===0){
+            this.printMsg("No orders placed")
+        }else{
+            ordersMsgs.forEach(order => {
+                this.printMsg("Order: " + order)
+            })
+        }
+    }
+
+    main() {
+        console.log("")
+        console.log(new Date())
+        this.printOrders()
         this.poll()
     }
 }

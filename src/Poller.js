@@ -5,13 +5,15 @@ class Poller extends EventEmitter {
     constructor(interval = 1000) {
         super();
         this.interval = interval
+        this.intevalCurrent = 5000
         this.keyListener()
     }
 
     printPnl(prefix=false){
-        let msg = ''
+        let msg = '\n'
         msg += (prefix) ? '>> Current PNL : ' : '>> PNL : '
         msg += this.pnl
+        msg += '\n'
         console.log(msg)
     }
 
