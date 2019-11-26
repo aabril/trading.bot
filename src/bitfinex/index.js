@@ -12,6 +12,10 @@ class BitfinexApiFetcher {
         return requestUrl
     }
 
+    parser() {
+        return parser
+    }
+
     async getTicker() {
         try {
             const requestUrl = this.getRequestUrl('ticker/tBTCUSD')
