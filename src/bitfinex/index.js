@@ -5,15 +5,12 @@ class BitfinexApiFetcher {
     constructor(){
         this.url = 'https://api-pub.bitfinex.com/v2/'
         this.queryParams = ''
+        this.parser = parser
     }
 
     getRequestUrl(pathParams) {
         const requestUrl = `${this.url}/${pathParams}?${this.queryParams}`
         return requestUrl
-    }
-
-    parser() {
-        return parser
     }
 
     async getTicker() {
