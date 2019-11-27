@@ -2,10 +2,11 @@ const BitfinextApi = require('./bitfinex')
 bitfinexApi = new BitfinextApi()
 
 // #ToDo: No idea yet what would be a rational timespan, will check.
-// const orderSettings = {
-//     "amount": "0.003",
-//     "timespan": "60000" // 1 minute 
-// }
+const orderSettings = {
+    "buyDiffAmount": "40",
+    "sellDiffAmount": "40",
+    "timespan": "60000" // 1 minute 
+}
 
 class Orders {
     constructor() {
@@ -15,9 +16,9 @@ class Orders {
     placeBuy() {
         const order = {
             "order": "buy",
-            "orderPrice": 7000,
-            "amount": 1.53,
-            "totalAmount": 10710,
+            "orderPrice": 0,
+            "amount": 0,
+            "totalAmount": 0,
             "pair": "BTCUSD"
         }
         this.orders.push(order)
@@ -26,9 +27,9 @@ class Orders {
     placeSell() {
         const order = {
             "order": "sell",
-            "orderPrice": 2000,
-            "amount": 1.53,
-            "totalAmount": 10710,
+            "orderPrice": 0,
+            "amount": 0,
+            "totalAmount": 0,
             "pair": "BTCUSD"
         }
         this.orders.push(order)
@@ -36,8 +37,22 @@ class Orders {
 
     async runTradingAlgorithm() {
         const candlesAPIResponse = await bitfinexApi.getCandles()
-        const candlesAPIResponseParsed = bitfinexApi.parser.candles(candlesAPIResponse)
-        console.log(JSON.stringify(candlesAPIResponseParsed, null, 2))
+        const candles = bitfinexApi.parser.candles(candlesAPIResponse)
+
+        const lastIndex = candles.length-1
+
+        const firstItem = candles[0]
+        const lastItem = candles[lastIndex]
+
+        const buyDiff = firstItem.OPEN - lastItem.OPEN
+        if(buyDiff>orderSettings.buyDiffAmount){
+            this.placeBuy()
+        }
+
+        const sellDiff = firstItem.OPEN - lastItem.OPEN
+        if(sellDiff>orderSettings.sellDiffAmount){
+            this.placeSell()
+        }
     }
 
     resetOrders() {
@@ -53,8 +68,8 @@ class Orders {
     }
 
     getOrdersMsgs() {
-        this.placeBuy() //mocking orders
-        this.placeSell() //mocking orders
+        // this.placeBuy() //mocking orders
+        // this.placeSell() //mocking orders
         const msgs = this.formatMsgs()
         this.resetOrders()
         return msgs
