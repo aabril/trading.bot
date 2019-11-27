@@ -35,16 +35,9 @@ class Orders {
     }
 
     async runTradingAlgorithm() {
-        // const candlesAPIResponse = await bitfinexApi.getCandles()
-        // console.log(candlesAPIResponse)
-
-        // const parser = await bitfinexApi.parser()
-        // console.log(typeof parser)
-
-        // const candles = parser.parsedCandlesResponse(candlesAPIResponse)
-        // console.log(candles)
-        // // const parsedCandles = bitfinexApi.parser().parseCandlesResponse(candles)
-        // console.log(JSON.stringify(parsedCandles, null, 2))
+        const candlesAPIResponse = await bitfinexApi.getCandles()
+        const candlesAPIResponseParsed = bitfinexApi.parser.candles(candlesAPIResponse)
+        console.log(JSON.stringify(candlesAPIResponseParsed, null, 2))
     }
 
     resetOrders() {
@@ -60,9 +53,8 @@ class Orders {
     }
 
     getOrdersMsgs() {
-        //mocking orders 
-        this.placeBuy()
-        this.placeSell()
+        this.placeBuy() //mocking orders
+        this.placeSell() //mocking orders
         const msgs = this.formatMsgs()
         this.resetOrders()
         return msgs
