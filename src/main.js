@@ -33,7 +33,8 @@ class Main extends Poller {
 
     printOrders() {
         const ordersMsgs = orders.getOrdersMsgs()
-        if(ordersMsgs.length===0){
+        const isEmpty = !(Array.isArray(ordersMsgs) && ordersMsgs.length)
+        if(isEmpty){
             this.printMsg("No orders placed")
         }else{
             ordersMsgs.forEach(order => {
@@ -42,10 +43,11 @@ class Main extends Poller {
         }
     }
 
-    main() {
-        console.log("")
-        console.log(new Date())
-        this.printOrders()
+    async main() {
+        const now = new Date()
+        this.printMsg("\n"+now.toLocaleString())
+        await orders.runTradingAlgorithm()
+        await this.printOrders()
         this.poll()
     }
 }
